@@ -1,5 +1,5 @@
 # CMPE282
-### Steps to install necessary module tp run meanjs
+### Steps to install necessary module to run meanjs
 * sudo apt-get install nodejs npm git
 * npm install -g bower
 * npm install -g grunt-cli
