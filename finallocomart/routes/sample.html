@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Hello AngularJS</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("Mymodule",[]).
+    controller("Mycontroller",function($scope, $http) {
+    	$scope.submit=function(){
+    	$http({method:"GET",
+    		  url:"/login",
+    	params:{"name":$scope.name,"password":$scope.password},	  
+    	
+    	}).success(function(data){
+    			  alert("In success");
+    			  $scope.greeting=data.data;
+    			  if(data.code==200){
+    				  alert("inside data")
+  	           		window.location.assign('/home');
+    				  
+    			  }else{
+    				  alert("In else"+data.code);
+    			  }
+    			  
+    		  })
+    		  .error(function(error){
+    			  alert("In error");
+    		  });
+    	}
+    	});
+	        
+	    
+
+	
+
+    
+    
+    </script>	
+	</head>
+
+	<body ng-app="Mymodule">
+		<div ng-controller="Mycontroller">
+	Name:  <input type="text" value="" name="name" id="name" ng-model="name">
+	Email:  <input type="password" value="" name="password" id="password" ng-model="password">
+			<p>The username is {{greeting.username}}</p>
+			<p>The content is {{greeting.password}}</p>
+			<input type="submit" ng-click="submit()"/>
+		</div>
+	</body>
+</html>

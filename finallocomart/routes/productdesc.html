@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>  
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("productinfoModule",[]).
+    controller("productinfoController",function($scope, $http) {
+    	$scope.submit = function(){
+    		
+        		$http({method:"POST",
+          		  url:"/ordersubmit",
+          		params:{"productcode":$scope.productinfo.productCode,
+          			"productname":$scope.productinfo.productName,
+          			"productline":$scope.productinfo.productLine,
+          			"productscale":$scope.productinfo.productScale,
+          			"productprice":$scope.productinfo.buyPrice,
+          			"productquantity":$scope.quantity,
+          		}	
+          		  
+          	
+          }).success(function(data){
+        	  alert("In success");
+          }).error(function(data){
+        	  alert("In error");
+          });
+    	}
+    	$scope.pass = function(){
+    		$http({method:"GET",
+      		  url:"/productinformation",
+      		  
+      	
+      }).success(function(data){
+      	alert("In success");
+      	if(data.code==200)
+      		{
+      			alert("inside data");
+      			alert("data is "+JSON.stringify(data.data));
+      			$scope.productinfo = data.data[0];	  
+      		}
+      	else
+      		{
+      				  alert("In else");
+      		}
+      			  
+      		  })
+      	.error(function(error){
+      			  alert("In error");
+      		  });
+      	}
+  	
+    });
+</script>
+
+
+</head>
+<body ng-app="productinfoModule" >
+<div ng-controller="productinfoController" ng-init="pass()"> 
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/></a>
+		  </div>
+          <div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>
+						
+					<div class="clear"></div> 
+						
+		</div>			<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li ><a href="index.html">Home</a></li>
+						
+                        
+						<li class="active"><a href="order.html">My Orders</a></li>
+
+                        <li><a href="office2.html">Branches</a></li>
+						<li><a href="about.html">About Us</a></li>
+						
+                        <li><a href="search.html">Search</a></li>
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+		<div class="banner-top">
+			<div class="row">
+           
+                            <div class="container">
+                              
+                              <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product Code</th>
+        
+        <th>Product Name</th>
+        <th>Product Line</th>
+        <th>Product Scale</th>
+        <th>Product Vendor</th>
+        <th>Product Description</th>
+        <th>Buy Price</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+         <td></td>
+    
+        
+        
+
+      </tr>
+    
+     
+    </tbody>
+  </table>
+  <!-- Button --></div>
+
+                
+         
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+    	
+    	
+            

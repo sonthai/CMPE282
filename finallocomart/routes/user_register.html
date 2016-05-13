@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>User Register</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ <script>
+    var application = angular.module("userregisterModule",[]).
+    controller("userregisterController",function($scope, $http) {
+    	$scope.submit = function(){
+    		alert("Inside Register");
+    		$http({method:"POST",
+      		  url:"/register",
+      		params:{"name":$scope.name,"lname":$scope.lname,
+      			"cfname":$scope.cfname,"phone":$scope.phone,
+      			"addressline1":$scope.addressline1,"addressline2":$scope.addressline2	
+      			,"city":$scope.city,"state":$scope.state,"country":$scope.country,
+      			"postalcode":$scope.postalcode,"username":$scope.username,"password":$scope.password},	
+      }).success(function(data){
+    	  alert("In success");
+      }).error(function(data){
+    	  alert("In error");
+      });
+	}	
+    });
+</script>
+
+</head>
+<body ng-app="userregisterModule">
+<div ng-controller="userregisterController">
+Name:  <input type="text" value="" name="name" id="name" ng-model="name"/>
+LastName:  <input type="text" value="" name="lname" id="lname" ng-model="lname"/>
+cfname:  <input type="text" value="" name="cfname" id="cfname" ng-model="cfname"/>
+Phone:  <input type="text" value="" name="phone" id="phone" ng-model="phone"/>
+AddressLine1:  <input type="text" value="" name="address1" id="addressline1" ng-model="addressline1"/>
+AddressLine2:  <input type="text" value="" name="address2" id="addressline2" ng-model="addressline2"/>
+City:  <input type="text" value="" name="city" id="city" ng-model="city"/>
+State:  <input type="text" value="" name="state" id="state" ng-model="state"/>
+Country:  <input type="text" value="" name="country" id="country" ng-model="country"/>
+PostalCode:  <input type="text" value="" name="postalcode" id="postalcode" ng-model="postalcode"/>
+Username:  <input type="text" value="" name="username" id="username" ng-model="username"/>
+passowrd:  <input type="password" value="" name="password" id="password" ng-model="password"/>
+<input type="submit" ng-click="submit()"/>
+</div>
+</body>
+</html>

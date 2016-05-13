@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>LocoMart</title>
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+  <link rel='stylesheet prefetch' href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+        <link rel="stylesheet" href="css/stylelogin.css">
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="js/indexlogin.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ <script>
+    var application = angular.module("userregisterModule",[]).
+    controller("userregisterController",function($scope, $http) {
+    	$scope.submit = function(){
+    		alert("Inside Register");
+    		alert($scope.lname);
+    		$http({method:"POST",
+      		  url:"/register",
+      		params:{"name":$scope.name,"lname":$scope.lname,
+      			"cfname":$scope.cfname,"phone":$scope.phone,
+      			"addressline1":$scope.addressline1,"addressline2":$scope.addressline2	
+      			,"city":$scope.city,"state":$scope.state,"country":$scope.country,
+      			"postalcode":$scope.postalcode,"username":$scope.username,"password":$scope.password},	
+      }).success(function(data){
+    	  alert("In success");
+    	  window.location.assign('/index');
+      }).error(function(data){
+    	  alert("There was some problem in Registration Process");
+      });
+	}	
+    });
+</script>
+    
+    
+    
+  </head>
+
+<body ng-app="userregisterModule">
+<div ng-controller="userregisterController">
+
+ <link href="http://fonts.googleapis.com/css?family=Ubuntu:500" rel='stylesheet' type='text/css'>
+
+<div class="login">
+  <div class="login-header">
+    <h3>LocoMart</h3>
+  </div>
+
+    <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend align="center">Register</legend>
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="fname" >First Name</label>  
+  <div class="col-md-4">
+  <input id="fname" name="fname" type="text" placeholder="" class="form-control input-md" required="" ng-model="name">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lname" >Last Name</label>  
+  <div class="col-md-4">
+  <input id="lname" ng-model="lname" name="lname" type="text" placeholder="" class="form-control input-md " required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="pname" >Preferred Name</label>  
+  <div class="col-md-4">
+  <input id="pname" name="pname" type="text" ng-model="cfname" placeholder="" class="form-control input-md " required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="username" >UserName</label>  
+  <div class="col-md-4">
+  <input id="username" name="username" ng-model="username" type="text" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password</label>
+  <div class="col-md-4">
+    <input id="password" name="password"  ng-model="password" type="password" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="confirmpassword">Confirm Password</label>
+  <div class="col-md-4">
+    <input id="confirmpassword" name="confirmpassword" type="password" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone" >Phone No.</label>  
+  <div class="col-md-4">
+  <input id="phone" name="phone" type="text" ng-model="phone" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email ID</label>  
+  <div class="col-md-4">
+  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group"> 
+  <label class="col-md-4 control-label" for="add1" >Address 1</label>  
+  <div class="col-md-4">
+  <input id="add1" name="add1" type="text" ng-model="addressline1" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="add2" >Address 2</label>  
+  <div class="col-md-4">
+  <input id="add2" name="add2" type="text" ng-model="addressline2" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="country" >Country</label>  
+  <div class="col-md-4">
+  <input id="country" name="country" type="text" ng-model="country" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="state" >State</label>  
+  <div class="col-md-4">
+  <input id="state" name="state" type="text" ng-model="state" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="city" >City</label>  
+  <div class="col-md-4">
+  <input id="city" name="city" type="text" ng-model="city" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="zipcode" >Zipcode</label>  
+  <div class="col-md-4">
+  <input id="zipcode" name="zipcode" type="text" ng-model="postalcode" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-8">
+    <button id="submit" name="submit" class="btn btn-success" ng-click="submit()">Submit</button>
+    <button id="cancel" name="cancel" class="btn btn-danger">Cancel</button>
+  </div>
+</div>
+
+
+
+
+
+
+</fieldset>
+</form>
+
+    <br>
+    <br>
+    <br>
+    
+    
+  </div>
+<div class="error-page">
+  <div class="try-again">Error: Try again?</div>
+</div>
+
+    
+    
+    </div>
+  </body>
+</html>

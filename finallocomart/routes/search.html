@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://fonts.googleapis.com/css?family=Playball" rel='stylesheet' type='text/css'> 
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("homeModule",[]).
+    controller("homeController",function($scope, $http) {
+    	$scope.pass = function(product){
+    		$http({method:"GET",
+      		  url:"/productinfo",
+      	params:{"productcode":product.productCode},	  
+      	
+      	}).success(function(data){
+      			//  alert("In success");
+      			 
+      			  if(data.code==200){
+      				 // alert("inside data");
+      				 // alert("data is "+JSON.stringify(data.data));
+      				  $scope.products = data.data;
+      				window.location.assign('/productsurl');
+      				  
+      			  }else{
+      				  alert("Error in loading data. Please try again some later");
+      				// alert("data is "+JSON.stringify(data.data));
+      				window.location.assign('/home');
+      			  }
+      			  
+      		  })
+      		  .error(function(error){
+      			alert("Error in loading data. Please try again some later");
+      			window.location.assign('/home');
+      		  });
+    		
+    		
+    	}
+    	$scope.submit=function(){
+        	$http({method:"GET",
+        		  url:"/product",
+        	params:{"productvalue":$scope.productvalue},	  
+        	
+        	}).success(function(data){
+        			//  alert("In success");
+        			 
+        			  if(data.code==200){
+        				//  alert("inside data");
+        				  //alert("data is "+JSON.stringify(data.data));
+        				  $scope.products = data.data;
+      	           	
+        				  
+        			  }else{
+        				  alert("Error in loading data. Please try again some later");
+        				  window.location.assign('/home');
+        			  }
+        			  
+        		  })
+        		  .error(function(error){
+        			  alert("Error in loading data. Please try again some later");
+        			  window.location.assign('/home');
+        		  });
+        	}
+    	
+    	
+    });
+    
+    </script>
+</head>
+<body ng-app="homeModule">
+<div ng-controller="homeController">
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/></a>
+		  </div>
+				<div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>		
+					<div class="clear"></div> 
+						
+		</div>			<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li ><a href="index.html">Home</a></li>
+						
+                        
+						<li><a href="order.html">My Orders</a></li>
+
+                        <li><a href="office2.html">Branches</a></li>
+						<li><a href="about.html">About Us</a></li>
+						
+                        <li class="active"><a href="search.html">Search</a></li>
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+		
+
+</div>
+
+		<div class="banner-top">
+			<div class="header-bottom">
+				 <div class="header_bottom_right_images"> </div>
+</div>
+          <strong>Product Line</strong>
+<select ng-model="productvalue">
+  <option value="Motorcycles">Motorcycles</option>
+  <option value="Classic Cars">Classic Cars</option>
+  <option value="Trucks and Buses">Trucks and Buses</option>
+  <option value="Vintage Cars">vintage</option>
+  <option value="Planes">Planes</option>
+  <option value="Ships">Ships</option>
+  <option value="Trains">Trains</option>
+  <option value="Vintage Cars">Vintage Cars</option>
+  
+</select>
+  
+   <input type="submit" ng-click="submit()"/>
+
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-1">
+                        
+                            <table class="table table-bordered">
+
+                                <thead>
+                                <tr>
+                                    <th>Product Code</th>
+                                    <th>Product Name</th>
+                                    
+                                    <th>Product Vendor</th>
+                                    
+                                    <th>Details</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="product in products">
+		<td>{{product.productCode}}</td>>
+		<td>{{product.productName}}</td>>
+		
+		
+		<td>{{product.productVendor}}</td>>
+		
+		<td><button ng-click="pass(product)">Details</button></td>
+                                </tbody>
+                            </table>
+
+                        </div>
+                
+</div>
+                    </div>
+          
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+    	
+    	
+            

@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://fonts.googleapis.com/css?family=Playball" rel='stylesheet' type='text/css'>  
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ <script>
+    var application = angular.module("productModule",[]).
+    controller("productController",function($scope, $http) {
+    	$scope.submit = function(){
+    		//alert("Inside Register");
+    		$http({method:"POST",
+      		  url:"/productsubmit",	  
+      		params:{"productCode":$scope.productCode,"productname":$scope.productname,
+      			"productline":$scope.productline,"productscale":$scope.productscale,
+      			"productvendor":$scope.productvendor,"productDescription":$scope.productDescription	
+      			,"quantityInStock":$scope.quantityInStock,"buyPrice":$scope.buyPrice,"MSRP":$scope.MSRP},	
+      }).success(function(data){
+    	  alert("Product was added successfully");
+    	  window.location.assign('/adminhome');
+      }).error(function(data){
+    	  alert("There was some error in adding the product. Please try again");
+    	  window.location.assign('/adminhome');
+      });
+	}	
+    });
+</script>
+</head>
+<body ng-app="productModule">
+<div ng-controller="productController">
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="adminhome.html"><img src="images/logo.png" alt=""/></a>
+		  </div>
+					<div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>	
+					<div class="clear"></div> 
+						
+		</div>			<div class="menu"> 	
+		<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li ><a href="adminhome.html">Home</a></li>
+						<li class="active"><a href="addprod.html">Add Products</a></li>
+                        
+
+
+                        <li><a href="deleteproduct.html">Delete Products</a></li>
+                        <li><a href="Myorder.html">Orders</a></li>
+                         <li><a href="officeadmin.html">Branches</a></li>
+						
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+		<div class="banner-top">
+			<div class="header-bottom">
+				 <div class="header_bottom_right_images"> </div>
+                 <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend align="center"><strong>Add Products</strong></legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productcode">Product Code</label>  
+  <div class="col-md-4">
+  <input id="productcode" name="productcode" type="text" placeholder="" class="form-control input-md" ng-model="productCode">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productname">Product Name</label>  
+  <div class="col-md-4">
+  <input id="productname" name="productname" type="text" placeholder="" class="form-control input-md" ng-model="productname">
+    
+  </div>
+</div>
+
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="prdouctdrop">Product Line</label>
+  <div class="col-md-4">
+    <select id="prdouctdrop" name="prdouctdrop" class="form-control" ng-model="productline">
+      <option value="1">MotorCycles</option>
+      <option value="2">Classic Cars</option>
+      <option value="3">Trucks and Buses</option>
+      <option value="4">Vintage</option>
+      <option value="5">Planes</option>
+      <option value="6">Ships</option>
+      <option value="7">Trains</option>
+      <option value="8">Vintage Cars</option>
+    </select>
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productscale">Product Scale</label>  
+  <div class="col-md-4">
+  <input id="productscale" name="productscale" type="text" placeholder="" class="form-control input-md" ng-model="productscale">
+    
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productvendor">Product Vendor</label>  
+  <div class="col-md-4">
+  <input id="productvendor" name="productvendor" type="text" placeholder="" class="form-control input-md" ng-model="productvendor">
+    
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productdesc">Product Description</label>  
+  <div class="col-md-4">
+  <input id="productdesc" name="productdesc" type="text" placeholder="" class="form-control input-md" ng-model="productDescription">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="qstock">Quantity in Stock</label>  
+  <div class="col-md-4">
+  <input id="qstock" name="qstock" type="text" placeholder="" class="form-control input-md" ng-model="quantityInStock">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="bprice">Buy Price</label>  
+  <div class="col-md-4">
+  <input id="bprice" name="bprice" type="text" placeholder="" class="form-control input-md" ng-model="buyPrice">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="msrp">MSRP</label>  
+  <div class="col-md-4">
+  <input id="msrp" name="msrp" type="text" placeholder="" class="form-control input-md" ng-model="MSRP">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div align="center"class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button id="submit" name="submit" class="btn btn-success" ng-click="submit()">Submit</button>
+  </div>
+</div>
+
+
+
+
+</fieldset>
+</form>
+
+                 
+                 
+                              </div>
+                 
+                
+                        
+                
+
+                    </div>
+         
+</div>
+
+</div>
+		
+        
+
+		
+</div>
+
+</div>
+
+
+</body>
+</html>
+
+    	
+    	
+            

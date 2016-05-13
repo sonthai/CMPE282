@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Add Product</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ <script>
+    var application = angular.module("productModule",[]).
+    controller("productController",function($scope, $http) {
+    	$scope.submit = function(){
+    		alert("Inside Register");
+    		$http({method:"POST",
+      		  url:"/productsubmit",	  
+      		params:{"productCode":$scope.productCode,"productname":$scope.productname,
+      			"productline":$scope.productline,"productscale":$scope.productscale,
+      			"productvendor":$scope.productvendor,"productDescription":$scope.productDescription	
+      			,"quantityInStock":$scope.quantityInStock,"buyPrice":$scope.buyPrice,"MSRP":$scope.MSRP},	
+      }).success(function(data){
+    	  alert("In success");
+      }).error(function(data){
+    	  alert("In error");
+      });
+	}	
+    });
+</script>
+
+</head>
+<body ng-app="productModule">
+<div ng-controller="productController">
+productCode:  <input type="text" value="" name="productCode" id="productCode" ng-model="productCode"/>
+productname:  <input type="text" value="" name="productname" id="productname" ng-model="productname"/>
+productline:  <input type="text" value="" name="productline" id="productline" ng-model="productline"/>
+productscale:  <input type="text" value="" name="productscale" id="productscale" ng-model="productscale"/>
+productvendor:  <input type="text" value="" name="productvendor" id="productvendor" ng-model="productvendor"/>
+productDescription:  <input type="text" value="" name="productDescription" id="productDescription" ng-model="productDescription"/>
+quantityInStock:  <input type="text" value="" name="quantityInStock" id="quantityInStock" ng-model="quantityInStock"/>
+buyPrice:  <input type="text" value="" name="buyPrice" id="buyPrice" ng-model="buyPrice"/>
+MSRP:  <input type="text" value="" name="country" id="MSRP" ng-model="MSRP"/>
+
+<input type="submit" ng-click="submit()"/>
+</div>
+</body>
+</html>

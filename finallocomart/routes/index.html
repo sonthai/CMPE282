@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://fonts.googleapis.com/css?family=Playball' rel='stylesheet" type='text/css'>  
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("homeModule",[]).
+    controller("homeController",function($scope, $http) {
+    	$scope.pass = function(product){
+    		$http({method:"GET",
+      		  url:"/productinfo",
+      	params:{"productcode":product.productCode},	  
+      	
+      	}).success(function(data){
+      			  alert("In success");
+      			 
+      			  if(data.code==200){
+      				  alert("inside data");
+      				  alert("data is "+JSON.stringify(data.data));
+      				  $scope.products = data.data;
+      				window.location.assign('/productsurl');
+      				  
+      			  }else{
+      				  alert("In else");
+      				 alert("data is "+JSON.stringify(data.data));
+      			  }
+      			  
+      		  })
+      		  .error(function(error){
+      			  alert("In error");
+      		  });
+    		
+    		
+    	}
+    	$scope.submit=function(){
+        	$http({method:"GET",
+        		  url:"/product",
+        	params:{"productvalue":$scope.productvalue},	  
+        	
+        	}).success(function(data){
+        			  alert("In success");
+        			 
+        			  if(data.code==200){
+        				  alert("inside data");
+        				  alert("data is "+JSON.stringify(data.data));
+        				  $scope.products = data.data;
+      	           	
+        				  
+        			  }else{
+        				  alert("In else");
+        			  }
+        			  
+        		  })
+        		  .error(function(error){
+        			  alert("In error");
+        		  });
+        	}
+    	
+    	
+    });
+    
+    </script>
+</head>
+<body ng-app="homeModule">
+<div ng-controller="homeController">
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/></a>
+            
+		  </div>
+          <div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>
+					<div class="clear"></div> 
+						
+		</div>	
+		<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li class="active"><a href="index.html">Home</a></li>
+						                        
+						<li><a href="order.html">My Orders</a></li>
+
+                        <li><a href="office2.html">Branches</a></li>
+						<li><a href="about.html">About Us</a></li>
+                        
+						
+                        <li><a href="search.html">Search</a></li>
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+		<div class="banner-top">
+			<div class="header-bottom">
+				 <div class="header_bottom_right_images" >
+				     	<div id="slideshow" align="center" align="center">
+							<ul class="slides">
+						    	<li><a href="Search.html"><canvas ></canvas><img src="images/banner4.jpg" alt="Marsa Alam underawter close up" ></a></li>
+						        <li><a href="Search.html"><canvas></canvas><img src="images/banner2.jpg" alt="Turrimetta Beach - Dawn" ></a></li>
+						        <li><a href="Search.html"><canvas></canvas><img src="images/banner3.jpg" alt="Power Station" ></a></li>
+						        <li><a href="Search.html"><canvas></canvas><img src="images/banner1.jpg" alt="Colors of Nature" ></a></li>
+						    </ul>
+						    <span class="arrow previous"></span>
+						    <span class="arrow next"></span>
+				  	</div>
+		  			<div class="content-wrapper">		  
+						<div class="content-top">
+							  	<div class="box_wrapper"><h1>New Products</h1>
+								</div>
+							 <div class="text"> 	
+								<div class="grid_1_of_3 images_1_of_3">
+									<div class="grid_1">
+										<a href="Search.html"><img src="images/pic5.jpg" title="continue reading" alt=""></a>
+											<div class="grid_desc">
+												<p class="title">Mercedez Benz SLX</p>
+																									 
+													<div class="cart-button">
+														
+														<button class="button"><span>Details</span></button>
+													<div class="clear"></div>
+												</div>
+											</div>
+								</div><div class="clear"></div>
+							</div>
+									<div class="grid_1_of_3 images_1_of_3">
+										  <div class="grid_1">
+										<a href="Search.html"><img src="images/pic6.jpg" title="continue reading" alt=""></a>
+											<div class="grid_desc">
+												<p class="title">Mazada Cars</p>
+											
+													 
+													<div class="cart-button">
+														
+														<button class="button"><span>Details</span></button>
+													<div class="clear"></div>
+												</div>
+											</div>
+								</div><div class="clear"></div>
+									</div>
+									<div class="grid_1_of_3 images_1_of_3">
+										  <div class="grid_1">
+										<a href="Search.html"><img src="images/pic4.jpg" title="continue reading" alt=""></a>
+											<div class="grid_desc">
+												<p class="title">Mercedez Exotic Cars</p>
+												
+<div class="cart-button">
+														
+						    <button class="button"><span>Details</span></button>
+													<div class="clear"></div>
+												</div>
+											</div>
+								</div><div class="clear"></div>
+									</div><div class="clear"></div>
+								</div>
+						</div>
+						<div class="content-top">
+							  	<div class="box_wrapper"><h1>Featured Products</h1>
+								</div>
+							 <div class="text"> 	
+								<div class="grid_1_of_3 images_1_of_3">
+									<div class="grid_1">
+										<a href="Search.html"><img src="images/pic1.jpg" title="continue reading" alt=""></a>
+											<div class="grid_desc">
+												<p class="title">Tesla T-Models Outer View</p>
+												
+													<div class="cart-button">
+														
+														<button class="button"><span>Details</span></button>
+													<div class="clear"></div>
+												</div>
+											</div>
+								</div><div class="clear"></div>
+							</div>
+									<div class="grid_1_of_3 images_1_of_3">
+										  <div class="grid_1">
+										<a href="Search.html"><img src="images/pic2.jpg" title="continue reading" alt=""></a>
+											<div class="grid_desc">
+												<p class="title">Tesla T-models Dashboard view</p>
+												
+													 
+													<div class="cart-button">
+														
+														<button class="button"><span>Details</span></button>
+													<div class="clear"></div>
+												</div>
+											</div>
+								</div><div class="clear"></div>
+									</div>
+									<div class="grid_1_of_3 images_1_of_3">
+										  <div class="grid_1">
+										<a href="Search.html"><img src="images/pic3.jpg" title="continue reading" alt=""></a>
+											<div class="grid_desc">
+												<p class="title">Superfast Exotic cars</p>
+												
+													 
+													<div class="cart-button">
+														
+														<button class="button"><span>Details</span></button>
+													<div class="clear"></div>
+												</div>
+											</div>
+								</div><div class="clear"></div>
+									</div><div class="clear"></div>
+								</div>
+						</div>
+				</div>
+		</div>
+		<div class="header-para">
+				
+				
+				
+					
+				</div>
+	</div>
+		<div class="clear"></div>
+		
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+    	
+    	
+            

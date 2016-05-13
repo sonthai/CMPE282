@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>LocoMart</title>
+    <link rel="stylesheet prefetch" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/stylelogin.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+        <script src="js/indexlogin.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ 
+    
+
+        
+<script>
+    var application = angular.module("Mymodule",[]).
+    controller("Mycontroller",function($scope, $http) {
+    	$scope.submit=function(){
+    	$http({method:"GET",
+    		  url:"/login",
+    	params:{"name":$scope.name,"password":$scope.password},	  
+    	
+    	}).success(function(data){
+			 // alert("In success");
+			  $scope.greeting=data.data;
+			  if(data.code==200 && data.status==true){
+				  //alert("inside data");
+				  if(data.data.Role=="user")
+           		window.location.assign('/home');
+				  if(data.data.Role=="admin")
+					  window.location.assign('/adminhome.html');  
+				  
+			  }else{
+				  alert("Please enter valid credentials");
+				  window.location.assign('/index');
+			  }
+			  
+		  })
+		  .error(function(error){
+			  alert("Please enter valid credentials");
+		  });
+    	}
+    	});
+	        
+	    
+
+	
+
+    
+    
+    </script>	
+    
+    
+    
+  </head>
+
+ <body ng-app="Mymodule">
+		<div ng-controller="Mycontroller">
+
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:500" rel='stylesheet' type='text/css'>
+
+<div class="login">
+  <div class="login-header">
+    <h1>LocoMart</h1>
+  </div>
+  <div class="login-form">
+    <h3>Username:</h3>
+    <input type="text" placeholder="Username" ng-model="name"/><br>
+    <h3>Password:</h3>
+    <input type="password" placeholder="Password" ng-model="password"/>
+    <br>
+    <input type="button" value="Login" class="login-button"  ng-click="submit()"/>
+    <br>
+    <a  class="sign-up" href="adduser.html">Sign Up!</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+  </div>
+</div>
+
+
+
+    
+    
+  </div>  
+  </body>
+</html>

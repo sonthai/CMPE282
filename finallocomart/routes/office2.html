@@ -1,0 +1,193 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://fonts.googleapis.com/css?family=Playball" rel='stylesheet' type='text/css'>  
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script>
+    var application = angular.module("officeModule",[]).
+    controller("officeController",function($scope, $http) {
+    	$scope.submit=function()
+    	{
+        	$http({method:"GET",
+        		  url:"/offices",
+        		  
+        	
+        }).success(function(data){
+        	//alert("In success");
+        	if(data.code==200)
+        		{
+        			//alert("inside data");
+        			//alert("data is "+JSON.stringify(data.data));
+        			$scope.offices = data.data;	  
+        		}
+        	else
+        		{
+        				//  alert("In else");
+        		alert("Error in loading data. Please try again some later");
+      			window.location.assign('/home');
+        		}
+        			  
+        		  })
+        	.error(function(error){
+        			  //alert("In error");
+        		alert("Error in loading data. Please try again some later");
+      			window.location.assign('/home');
+        		  });
+        	}
+    	
+    	
+    });
+    
+    </script>
+
+</head>
+<body ng-app="officeModule" >
+<div ng-controller="officeController" ng-init="submit()"> 
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/></a>
+		  </div>
+						<div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>
+					<div class="clear"></div> 
+						
+		</div>			<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li ><a href="index.html">Home</a></li>
+						
+                        
+						<li ><a href="order.html">My Orders</a></li>
+
+                        <li class="active"><a href="office2.html">Branches</a></li>
+						<li><a href="about.html">About Us</a></li>
+						
+                        <li><a href="search.html">Search</a></li>
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+		<br>
+        <br>
+       <form class="form-horizontal" >
+                 
+<div ng-repeat="office in offices">               
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ofcode">Office Code</label>  
+  <div class="col-md-4">
+  <input  style="border:hidden" id="ofcode" value="{{office.officeCode}}" name="ofcode" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="city">City</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="city" value={{office.city}} name="city" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone">Phone</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="phone" value={{office.phone}} name="phone" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="add1">Address 1</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="add1" name="add1" value={{office.addressLine1}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="add2">Address 2</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="add2" name="add2" value={{office.addressLine2}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="street">Street</label>  
+  <div class="col-md-4">
+  <input  style="border:hidden" id="state" name="State" value={{office.state}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="country">Country</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="country" name="country" value={{office.country}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="zipcode">ZipCode</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="zipcode" name="zipcode" value={{office.postalCode}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="territory">Territory</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="territory" name="territory" type="text" value={{office.territory}} placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+
+                        
+                
+
+              </div>
+         
+</div>
+</div>
+</form>

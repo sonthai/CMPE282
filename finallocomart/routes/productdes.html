@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://fonts.googleapis.com/css?family=Playball" rel='stylesheet' type='text/css'>  
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("productinfoModule",[]).
+    controller("productinfoController",function($scope, $http) {
+    	$scope.submit = function(){
+    		
+        		$http({method:"POST",
+          		  url:"/ordersubmit",
+          		params:{"productcode":$scope.productinfo.productCode,
+          			"productname":$scope.productinfo.productName,
+          			"productline":$scope.productinfo.productLine,
+          			"productscale":$scope.productinfo.productScale,
+          			"productprice":$scope.productinfo.buyPrice,
+          			"productquantity":$scope.quantity,
+          		}	
+          		  
+          	
+          }).success(function(data){
+        	  //alert("In success");
+        	  alert("Order was placed successfully");
+        	  window.location.assign('/home');
+          }).error(function(data){
+        	  //alert("In error");
+        	  alert("Error in loading data. Please try again some later");
+    			window.location.assign('/home');
+          });
+    	}
+    	$scope.pass = function(){
+    		$http({method:"GET",
+      		  url:"/productinformation",
+      		  
+      	
+      }).success(function(data){
+      //	alert("In success");
+      	if(data.code==200)
+      		{
+      			//alert("inside data");
+      			//alert("data is "+JSON.stringify(data.data));
+      			$scope.productinfo = data.data[0];	  
+      		}
+      	else
+      		{
+      		alert("Error in sending data. Please try again some later");
+  			window.location.assign('/home');
+      		}
+      			  
+      		  })
+      	.error(function(error){
+      		alert("Error in sending data. Please try again some later");
+  			window.location.assign('/home');
+      		  });
+      	}
+  	
+    });
+</script>
+
+
+</head>
+<body ng-app="productinfoModule" >
+<div ng-controller="productinfoController" ng-init="pass()"> 
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/></a>
+		  </div>
+          <div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>
+						
+					<div class="clear"></div> 
+						
+		</div>			<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li ><a href="index.html">Home</a></li>
+						
+                        
+						<li ><a href="order.html">My Orders</a></li>
+
+                        <li><a href="office2.html">Branches</a></li>
+						<li><a href="about.html">About Us</a></li>
+						
+                        <li class="active"><a href="search.html">Search</a></li>
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+<br>
+<br>
+ <form class="form-horizontal" >
+                 
+               
+<!-- Text input-->
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ofcode">Product Code</label>  
+  <div class="col-md-4">
+  <input  style="border:hidden" id="ofcode" value="{{productinfo.productCode}}" name="ofcode" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="city">Product Info</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="city" value={{productinfo.productName}} name="city" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone">Product Line</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="phone" value={{productinfo.productLine}} name="phone" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="add1">Product Scale</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="add1" name="add1" value={{productinfo.productScale}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="add2">Product Vendor</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="add2" name="add2" value={{productinfo.productVendor}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="street">Product Description</label>  
+  <div class="col-md-4">
+  <input  style="border:hidden" id="state" name="State" value={{productinfo.productDescription}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="country">Buy Price</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="country" name="country" value={{productinfo.buyPrice}} type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="zipcode">Quantity</label>  
+  <div class="col-md-4">
+  <input style="border:hidden" id="zipcode" name="zipcode" ng-model="quantity" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+		<div align="center"class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button id="delete" name="delete" class="btn btn-danger" ng-click="submit()">Order</button>
+  </div>
+
+
+
+                        
+                
+
+              </div>
+         
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+    	
+    	
+            
