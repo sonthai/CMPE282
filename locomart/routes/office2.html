@@ -1,0 +1,235 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>LocoMart</title>
+<link href="css/table.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://fonts.googleapis.com/css?family=Playball" rel='stylesheet' type='text/css'>   
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<!--slider-->
+<script src="js/jquery.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/superfish.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script>
+    var application = angular.module("officeModule",[]).
+    controller("officeController",function($scope, $http) {
+    	$scope.submit=function()
+    	{
+        	$http({method:"GET",
+        		  url:"/offices",
+        		  
+        	
+        }).success(function(data){
+        	//alert("In success");
+        	if(data.code==200)
+        		{
+        			alert("inside data");
+        			alert("data is "+JSON.stringify(data.data));
+        			$scope.offices = data.data;	  
+        		}
+        	else
+        		{
+        		alert("Error in loading data. please try again Later");
+        		}
+        			  
+        		  })
+        	.error(function(error){
+        		alert("Error in loading data. please try again Later");
+        		  });
+        	}
+    	
+    	
+    });
+    
+    </script>
+
+</head>
+<body ng-app="officeModule" >
+<div ng-controller="officeController" ng-init="submit()"> 
+<div class="header-bg">
+	<div class="wrap"> 
+		
+			<div class="total">
+<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""/></a>
+		  </div>
+						<div align="right">
+          <br>
+          <li><a href="loginfinal.html"><strong>Signout</strong></a></li>
+						</div>
+					<div class="clear"></div> 
+						
+		</div>			<div class="menu"> 	
+			<div class="top-nav"> 
+					<ul>
+						<li ><a href="index.html">Home</a></li>
+						
+                        
+						<li ><a href="order.html">My Orders</a></li>
+
+                        <li class="active"><a href="office2.html">Branches</a></li>
+						<li><a href="about.html">About Us</a></li>
+						
+                        <li><a href="search.html">Search</a></li>
+						
+
+					</ul>
+					<div class="clear"></div> 
+				</div>
+		</div>
+		<!--  div class="banner-top">
+			<div class="header-bottom">
+				 <div class="header_bottom_right_images"> </div>
+                 
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-1">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="officeid" >
+
+                            
+                                <thead>
+      <tr >
+      <th align="center"><strong>Title</strong></th>
+      
+</tr>
+<tr>
+      <th  align="center">Office Code</th>
+      
+      
+</tr>
+<tr>
+      <th align="center">City</th>
+      
+</tr>
+<tr>
+      <th align="center">Phone</th>
+      
+</tr>
+<tr>
+      <th align="center">Address 1</th>
+      
+</tr>
+<tr>
+      <th align="center">Address 2</th>
+      
+</tr>
+<tr>
+      <th  align="center">Street</th>
+      
+</tr>
+<tr>
+      <th  align="center">Country</th>
+      
+</tr>
+<tr>
+      <th  align="center">Zipcode</th>
+      
+</tr>
+<tr>
+      <th  align="center">Territory</th>
+      
+</tr>
+
+      
+    </thead>
+    </body>
+    
+                               
+                                </tbody>
+                            </table-->
+	   
+
+
+
+<div class="banner-top">
+			<div class="header-bottom">
+				 <div class="container">
+            
+  <div class="row">
+  <div class="col-md-10 col-sm-10 col-md-offset-1 col-lg-2 col-lg-offset-0">
+  <div class="table-responsive">
+  <div>
+<div ng-repeat="office in offices">
+<table class="table table-bordered" id="officeid" >
+<thead>
+
+<tr>
+      <th  align="center">Office Code</th>
+
+      <td>{{office.officeCode}}</td>
+      
+</tr>
+
+<tr>
+      <th align="center">City</th>
+       <td>{{office.city}}</td>
+</tr>
+<tr>
+      <th align="center">Phone</th>
+      <td>{{office.phone}}</td>
+</tr>
+<tr>
+      <th align="center">Address 1</th>
+       <td>{{office.addressLine1}}</td>
+</tr>
+<tr>
+      <th align="center">Address 2</th>
+       <td>{{office.addressLine2}}</td>
+</tr>
+<tr>
+      <th  align="center">State</th>
+      <td>{{office.state}}</td>
+</tr>
+<tr>
+      <th  align="center">Country</th>
+       <td>{{office.country}}</td>
+</tr>
+<tr>
+      <th  align="center">Zipcode</th>
+      <td>{{office.postalCode}}</td> 
+</tr>
+<tr>
+      <th  align="center">Territory</th>
+       <td>{{office.territory}}</td>
+</tr>
+    </thead>
+                 
+
+                            </table>
+                            </div>
+</div>
+      </div>
+                        </div>
+                
+</div>
+                    </div>
+                 
+                
+                        
+                
+
+                    </div>
+         
+</div>
+
+</div>
+		
+        
+
+		
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Home Page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script>
+    var application = angular.module("officeModule",[]).
+    controller("officeController",function($scope, $http) {
+    	$scope.submit=function()
+    	{
+        	$http({method:"GET",
+        		  url:"/offices",
+        		  
+        	
+        }).success(function(data){
+        	alert("In success");
+        	if(data.code==200)
+        		{
+        			alert("inside data");
+        			alert("data is "+JSON.stringify(data.data));
+        			$scope.offices = data.data;	  
+        		}
+        	else
+        		{
+        				  alert("In else");
+        		}
+        			  
+        		  })
+        	.error(function(error){
+        			  alert("In error");
+        		  });
+        	}
+    	
+    	
+    });
+    
+    </script>
+
+</head>
+<body>
+<body ng-app="officeModule">
+<div ng-controller="officeController">    
+Offices
+
+   <input type="submit" ng-click="submit()"/>
+ 
+<!--     <table>
+   	<thead>
+		<tr >   
+   			<th>Office code</th>
+   			<th>City</th>
+   			<th>Phone</th>
+   			<th>addressLine1</th>
+			<th>addressLine2</th>
+			<th>State</th>
+			<th>country</th>
+			<th>Postal Code</th>
+			<th>territory</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="office in offices">
+		<td>{{office.officeCode}}</td>>
+		<td>{{office.city}}</td>>
+		<td>{{office.phone}}</td>>
+		<td>{{office.addressLine1}}</td>>
+		<td>{{office.addressLine2}}</td>>
+		<td>{{office.state}}</td>>
+		<td>{{office.country}}</td>>
+		<td>{{office.postalCode}}</td>
+		<td>{{office.territory}}</td>
+	</tbody>
+	</table> -->
+<div ng-repeat="office in offices">
+<p>Office Code: {{office.officeCode}}  </p>
+<p>City: {{office.city}}  </p>
+<p>Phone: {{office.phone}}  </p>
+<p>Address Line 1 : {{office.addressLine1}}  </p> 
+<p>Address Line 2 : {{office.addressLine2}}  </p> 
+<p>State : {{office.state}}  </p>
+<p>Country :{{office.country}}</p>
+<p>Postal Code :{{office.postalCode}}</p>
+<p>Territory :{{office.territory}}</p> 
+</div>		   
+</div>
+
+
+
+</body>
+</html>

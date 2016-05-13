@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Admin Register</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ <script>
+    var application = angular.module("adminregisterModule",[]).
+    controller("adminregisterController",function($scope, $http) {
+    	$scope.submit = function(){
+    		alert("Inside Register");
+    		$http({method:"POST",
+      		  url:"/adminregister",
+      		params:{"name":$scope.name,"lname":$scope.lname,
+      			"ext":$scope.ext,"email":$scope.email,
+      			"ofccode":$scope.ofccode,"reportsto":$scope.reportsto	
+      			,"jobtitle":$scope.jobtitle,"username":$scope.username,"password":$scope.password},	
+      }).success(function(data){
+    	  alert("In success");
+      }).error(function(data){
+    	  alert("In error");
+      });
+	}	
+    });
+</script>
+
+</head>
+<body ng-app="adminregisterModule">
+<div ng-controller="adminregisterController">
+Name:  <input type="text" value="" name="name" id="name" ng-model="name"/>
+LastName:  <input type="text" value="" name="lname" id="lname" ng-model="lname"/>
+extension:  <input type="text" value="" name="cfname" id="cfname" ng-model="ext"/>
+email:  <input type="text" value="" name="phone" id="phone" ng-model="email"/>
+officecode:  <input type="text" value="" name="address1" id="addressline1" ng-model="ofccode"/>
+reportsTo:  <input type="text" value="" name="address2" id="addressline2" ng-model="reportsto"/>
+Job title:  <input type="text" value="" name="city" id="city" ng-model="jobtitle"/>
+Username:  <input type="text" value="" name="username" id="username" ng-model="username"/>
+passowrd:  <input type="password" value="" name="password" id="password" ng-model="password"/>
+<input type="submit" ng-click="submit()"/>
+</div>
+</body>
+</html>

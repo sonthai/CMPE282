@@ -1,0 +1,73 @@
+<html>
+<head>
+
+<title>Product Information</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("productinfoModule",[]).
+    controller("productinfoController",function($scope, $http) {
+    	$scope.submit = function(){
+    		
+        		$http({method:"POST",
+          		  url:"/ordersubmit",
+          		params:{"productcode":$scope.productinfo.productCode,
+          			"productname":$scope.productinfo.productName,
+          			"productline":$scope.productinfo.productLine,
+          			"productscale":$scope.productinfo.productScale,
+          			"productprice":$scope.productinfo.buyPrice,
+          			"productquantity":$scope.quantity,
+          		}	
+          		  
+          	
+          }).success(function(data){
+        	  alert("In success");
+          }).error(function(data){
+        	  alert("In error");
+          });
+    	}
+    	$scope.pass = function(){
+    		$http({method:"GET",
+      		  url:"/productinformation",
+      		  
+      	
+      }).success(function(data){
+      	alert("In success");
+      	if(data.code==200)
+      		{
+      			alert("inside data");
+      			alert("data is "+JSON.stringify(data.data));
+      			$scope.productinfo = data.data[0];	  
+      		}
+      	else
+      		{
+      				  alert("In else");
+      		}
+      			  
+      		  })
+      	.error(function(error){
+      			  alert("In error");
+      		  });
+      	}
+  	
+    });
+</script>
+
+
+
+
+</head>
+<body ng-app="productinfoModule" >
+<div ng-controller="productinfoController" ng-init="pass()">  
+
+<p>{{productinfo.productCode}}</p>
+<p>{{productinfo.productName}}</p>
+<p>{{productinfo.productLine}}</p>
+<p>{{productinfo.productScale}}</p>
+<p>{{productinfo.productVendor}}</p>
+<p>{{productinfo.productDescription}}</p>
+<p>{{productinfo.buyPrice}}</p>
+<input type="text" value="" name="quantity" id="quantity" ng-model="quantity">
+<input type="submit" ng-click="submit()"/>
+
+</body>
+</html>

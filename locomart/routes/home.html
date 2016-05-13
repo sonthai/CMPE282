@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Home Page</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script>
+    var application = angular.module("homeModule",[]).
+    controller("homeController",function($scope, $http) {
+    	$scope.pass = function(product){
+    		$http({method:"GET",
+      		  url:"/productinfo",
+      	params:{"productcode":product.productCode},	  
+      	
+      	}).success(function(data){
+      			  alert("In success");
+      			 
+      			  if(data.code==200){
+      				  alert("inside data");
+      				  alert("data is "+JSON.stringify(data.data));
+      				  $scope.products = data.data;
+      				window.location.assign('/productsurl');
+      				  
+      			  }else{
+      				  alert("In else");
+      				 alert("data is "+JSON.stringify(data.data));
+      			  }
+      			  
+      		  })
+      		  .error(function(error){
+      			  alert("In error");
+      		  });
+    		
+    		
+    	}
+    	$scope.submit=function(){
+        	$http({method:"GET",
+        		  url:"/product",
+        	params:{"productvalue":$scope.productvalue},	  
+        	
+        	}).success(function(data){
+        			  alert("In success");
+        			 
+        			  if(data.code==200){
+        				  alert("inside data");
+        				  alert("data is "+JSON.stringify(data.data));
+        				  $scope.products = data.data;
+      	           	
+        				  
+        			  }else{
+        				  alert("In else");
+        			  }
+        			  
+        		  })
+        		  .error(function(error){
+        			  alert("In error");
+        		  });
+        	}
+    	
+    	
+    });
+    
+    </script>
+    </head> 
+<body ng-app="homeModule">
+<div ng-controller="homeController">    
+Search
+<select ng-model="productvalue">
+  <option value="Motorcycles">Motorcycles</option>
+  <option value="Classic Cars">Classic Cars</option>
+  <option value="Trucks and Buses">Trucks and Buses</option>
+  <option value="Vintage Cars">vintage</option>
+  <option value="Planes">Planes</option>
+  <option value="Ships">Ships</option>
+  <option value="Trains">Trains</option>
+  <option value="Vintage Cars">Vintage Cars</option>
+
+</select>
+   <p ng-repeat="product in products">Value is:{{product.productName}}</p>
+   <input type="submit" ng-click="submit()"/>
+ 
+    <table>
+   	<thead>
+		<tr >   
+   			<th>Product code</th>
+   			<th>Product Name</th>
+   			<th>Product Line</th>
+   			<th>Product Scale</th>
+			<th>Product Vendor</th>
+			<th>Product Description</th>
+			<th>Quantity in Stock</th>
+			<th>Buy Price</th>
+			<th>MSRP</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="product in products">
+		<td>{{product.productCode}}</td>>
+		<td>{{product.productName}}</td>>
+		<td>{{product.productLine}}</td>>
+		<td>{{product.productScale}}</td>>
+		<td>{{product.productVendor}}</td>>
+		<td>{{product.productDescription}}</td>>
+		<td>{{product.quantityInStock}}</td>>
+		<td>{{product.buyPrice}}</td>
+		<td>{{product.MSRP}}</td>
+		<td><button ng-click="pass(product)">Details</button></td>
+	</tbody>
+	</table>	   
+</div>
+</body>
+</html>  

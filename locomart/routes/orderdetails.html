@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Order Details</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+ <script>
+    var application = angular.module("orderdetailsModule",[]).
+    controller("orderdetailsController",function($scope, $http) {
+    	$scope.submit = function(){
+    		alert("Order Details");
+    		$http({method:"GET",
+      		  url:"/orderdetails",
+      		params:{"customerNumber":103}
+            }).success(function(data){
+            	alert("In success");
+            	if(data.code==200)
+            		{
+            			alert("inside data");
+            			alert("data is "+JSON.stringify(data.data));
+            			$scope.order2=data.data;
+            		}
+            	else
+            		{
+            				  alert("In else");
+            		}
+            			  
+            		  })
+            	.error(function(error){
+            			  alert("In error");
+            		  });
+            	}
+        	
+        	
+        });
+        
+        </script>
+    	
+    	
+  
+
+
+
+
+</head>
+<body ng-app="orderdetailsModule" >
+<div ng-controller="orderdetailsController" ng-init="submit()">
+
+Order2:<p>{{order2}}</p>
+
+
+
+
+</body>
+</html>
